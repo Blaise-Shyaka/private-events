@@ -1,0 +1,10 @@
+<h1>Create Account</h1>
+
+<%= form_with model: @user do |f| %>
+  <%= label_tag(:name, "Please fill in your name:") %>
+  <br>
+  <%= f.text_field(:name, placeholder: 'Name') %>
+  <br>
+  <br>
+  <%= f.submit('Create account') %>
+<% end %>
