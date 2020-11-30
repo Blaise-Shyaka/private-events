@@ -1,19 +1,18 @@
 class SessionsController < ApplicationController
-  def new
-    @session = session
-  end
 
   def create
-    params[:name]
-    @user = User.where(:name => params[:name])
-    if @user.id
-      session[current_user_id] = @user.id
-      redirect_to user_path, notice: "Signed in successfully"
+    # @user = User.find_by_name(params[:name])
+    if @user
+      session[:user_id] = user.id
+      redirect_to root_path, :notice => 'Logged in!'
+    else
+      flash.now.alert = 'Invalid user name' 
+      render 'sessions#new'
     end
   end
 
-  private
-  def session_params
-    params.require(:session).permit(:name)
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path, :notice => "Logged out!"
   end
 end

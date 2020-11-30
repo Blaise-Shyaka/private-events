@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  # before_action :authenticate_user!, only: %i[new create show]
 
   def new
     @user = User.new
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:current_user_id])
+    # @user = User.find(session[:current_user_id])
   end
 
   private
