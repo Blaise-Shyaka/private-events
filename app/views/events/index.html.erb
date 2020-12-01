@@ -1,0 +1,15 @@
+<h1> <%=session[:name]%>'s Events </h1>
+
+  <% if @events %>
+    <% @events.each do |e| %>
+      <ul>
+        <li> Title: <%= e.title %></li>
+        <li> Description: <%= e.description %></li>
+        <li> Venue: <%= e.venue %></li>
+        <li> Date: <%= e.date %></li>
+        </ul>
+    <% end %>
+  <% else %>
+    <p> You haven't created any events yet!</p>
+  <% end %>
+<%= link_to "Create new event", new_event_path %>
