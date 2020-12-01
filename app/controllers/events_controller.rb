@@ -8,14 +8,19 @@ class EventsController < ApplicationController
     @event = @user.events.build(event_params)
     p @event
     if @event.save
-      redirect_to root_path, notice: "Event created"
+      redirect_to events_path, notice: 'Event created!'
     else
-      render "new"
+      render 'new'
     end
   end
 
   def index
     @events = Event.all
+  end
+
+  def show
+    @event = Event.find(params[:id])
+    
   end
 
   private
