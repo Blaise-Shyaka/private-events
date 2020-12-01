@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  # before_action :authenticate_user!, only: %i[new create show]
 
   def new
     @user = User.new

@@ -1,1 +1,10 @@
-<%# <p>Dear <%= @user.name %>, your account was successfully created!</p> %>
+<% if session[:name] %>
+<p>You are Log In as: <br> <%= session[:name] %></p>
+<% else %>
+<p>You need to Log In or Sign Up</p>
+<%= link_to  "Sign Up", new_user_path%> <br>
+<%= link_to  "Log In", new_session_path%>
+<% end %>
+
+
+<p>Events for this year</p>
