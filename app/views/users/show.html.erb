@@ -10,5 +10,30 @@
 </nav>
 
 <section>
+<h2>All the Past Events listed down below:</h2>
 
+
+<% @prev_events.each do |e| %>
+  <ul>
+    <li> Title: <%= e.title %></li>
+    <li> Description: <%= e.description %></li>
+    <li> Venue: <%= e.venue %></li>
+    <li> Date: <%= e.date %></li>
+  </ul>
+<% end %>
+
+<h2>All the Present Events listed down below:</h2>
+
+
+
+<h2>All the Future Events listed down below:</h2>
+
+<% @upcoming_events.each do |e| %>
+  <ul>
+    <li> Title: <%= e.title %></li>
+    <li> Description: <%= e.description %></li>
+    <li> Venue: <%= e.venue %></li>
+    <li> Date: <%= e.date %></li>
+  </ul>
+<% end %>
 </section>
