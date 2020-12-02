@@ -1,4 +1,11 @@
 class EventsController < ApplicationController
+
+  def index
+    @events = Event.all
+    @all_upcoming_events = Event.upcoming_events
+    @all_past_events = Event.previous_events
+  end
+
   def new
     @event = Event.new
   end
@@ -6,16 +13,12 @@ class EventsController < ApplicationController
   def create
     @user = current_user
     @event = @user.events.build(event_params)
-    p @event
     if @event.save
       redirect_to events_path, notice: 'Event created!'
     else
+      flash[:notice] = 'Something went wrong'
       render 'new'
     end
-  end
-
-  def index
-    @events = Event.all
   end
 
   def show
@@ -24,16 +27,8 @@ class EventsController < ApplicationController
 
   def attend
     @event = Event.find(params[:id])
-    if current_user.attended_events.exists?(params[:id])
-      redirect_to event_path(event), notice: 'You have already registered for this event!'
-    else
-      a = current_user.event.attendaces.build(event_id: params[:id])
-      if a.save
-        redirect_to events_path, notice: 'You have successfully registered for the event'
-      else
-        render :show, notice: 'Unable to register you for the event'
-      end
-    end
+    current_user.attended_events << @event
+    redirect_to @event
   end
 
   private

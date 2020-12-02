@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   resources :sessions, only: %i[new create destroy]
   resources :events, only: %i[new create index show]
   root to: 'users#show'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  delete '/logout' => 'sessions#destroy'
 end

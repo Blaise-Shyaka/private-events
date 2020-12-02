@@ -5,9 +5,10 @@ class SessionsController < ApplicationController
     if @user
       session[:user_id] = @user.id
       session[:name] = @user.name
-      redirect_to root_path, :notice => 'Logged in!'
+      redirect_to root_path 
+      flash.notice = 'Logged in!'
     else
-      flash.now.alert = 'Invalid user name' 
+      flash.now.alert = 'Invalid user name'
       render 'sessions#new'
     end
   end
@@ -16,6 +17,7 @@ class SessionsController < ApplicationController
     session.delete(:name)
     session.delete(:user_id)
     session[:user_id] = nil
-    redirect_to root_path, :notice => "Logged out!"
+    redirect_to root_path
+    flash.notice = 'Logged out!'
   end
 end

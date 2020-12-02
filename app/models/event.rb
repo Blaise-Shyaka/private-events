@@ -1,7 +1,10 @@
 class Event < ApplicationRecord
-  belongs_to :creator, class_name: 'User'
-  has_many :attendees, through: :event_attendances, source: :attendee
-  has_many :event_attendances, foreign_key: :attended_event_id
+  validates_presence_of :title, :description, :venue, :date
+
+  belongs_to :creator, class_name: 'User', foreign_key: :creator_id
+
+  has_many :attendees, through: :attendances
+  has_many :attendances, foreign_key: :attended_event_id
 
   scope :previous_events, -> { where('event_date < ?', Time.now) }
   scope :upcoming_events, -> { where('event_date > ?', Time.now) }

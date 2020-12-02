@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
 
   def new
-    @user = User.new
+    if session[:username].nil?
+      @user = User.new
+    else
+      @user = User.find(session[:id])
+      redirect_to user_path(@user)
+    end
   end
 
   def create
@@ -15,9 +20,20 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user_created_events = current_user.events
-    @upcoming_events = current_user.attended_events.upcoming_events
-    @prev_events = current_user.attended_events.previous_events
+    if session[:current_user]
+      @user = User.find(params[:id])
+      current_user(@user.id)
+      @user_created_events = current_user.created_events
+      @past_events = current_user.attended_events.previous_events
+      @upcoming_events = current_user.attended_events.upcoming_events
+    else
+      redirect_to new_session_path
+    end
+  end
+
+  def destroy
+    session.delete(:id)
+    @current_user = nil
   end
 
   private
