@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     if @user
       session[:user_id] = @user.id
       session[:name] = @user.name
-      redirect_to root_path 
+      redirect_to root_path
       flash.notice = 'Logged in!'
     else
       flash.alert = 'Invalid user name'
