@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
   def new
-    if session[:username].nil?
+    if session[:name].nil?
       @user = User.new
     else
-      @user = User.find(session[:id])
+      @user = User.find(session[:user_id])
       redirect_to user_path(@user)
     end
   end
@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      cookies[:current_user_id] = @user.id
       redirect_to root_path, notice: 'Successfully signed up!'
     else
       render :new
@@ -20,12 +19,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    if session[:current_user]
-      @user = User.find(params[:id])
-      current_user(@user.id)
-      @user_created_events = current_user.created_events
-      @past_events = current_user.attended_events.previous_events
-      @upcoming_events = current_user.attended_events.upcoming_events
+    if false
+    @user = current_user
+    @user_created_events = current_user.created_events
+    @past_events = current_user.attended_events.previous_events
+    @upcoming_events = current_user.attended_events.upcoming_events
     end
   end
 
