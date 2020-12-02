@@ -10,7 +10,10 @@ In this project we:
   - we create an attendance model
   - we use the association to connect the three model mention before
 
-  
+## Screenshots
+
+![events page](./app/assets/images/events.png)
+![home page](./app/assets/images/home.png)
 
 ## Built with
 
