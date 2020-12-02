@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def new
     if session[:name].nil?
       @user = User.new
