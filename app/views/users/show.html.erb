@@ -1,14 +1,16 @@
 <nav>
   <% if session[:name] %>
-    <p>You are Log In as: <br> <strong> <%= session[:name] %></strong></p>
     <%= link_to  "Log Out", session_path(session[:name]), method: :delete %><br>
     <br>
-    <%= link_to "Create new event", new_event_path %>
+    <p>You are Log In as: <br> <strong> <%= session[:name] %></strong></p>
+    
+    <%= link_to "Create new event", new_event_path %><br><br>
   <% else %>
     <p>You need to Log In or Sign Up</p>
-    <%= link_to  "Sign Up", new_user_path%> <br>
     <%= link_to  "Log In", new_session_path%>
+    <%= link_to  "Sign Up", new_user_path%> <br>
   <% end %>
+  <%= link_to  "See all your Events", events_path%> <br>
 </nav>
 
 
