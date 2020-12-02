@@ -2,20 +2,14 @@
 
 one:
   title: MyString
-  : MyText
   description: MyString
-  : MyText
   venue: MyString
-  : MyText
-  date: MyString
-  : 2020-12-01
+  date: 2020-12-02
+  creator_id: 1
 
 two:
   title: MyString
-  : MyText
   description: MyString
-  : MyText
   venue: MyString
-  : MyText
-  date: MyString
-  : 2020-12-01
+  date: 2020-12-02
+  creator_id: 1

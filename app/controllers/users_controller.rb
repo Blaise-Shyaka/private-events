@@ -26,8 +26,6 @@ class UsersController < ApplicationController
       @user_created_events = current_user.created_events
       @past_events = current_user.attended_events.previous_events
       @upcoming_events = current_user.attended_events.upcoming_events
-    else
-      redirect_to new_session_path
     end
   end
 

@@ -9,28 +9,20 @@
   <% end %>
 </nav>
 
-<section>
-<h2>All the Past Events listed down below:</h2>
 
 
-<% @previous_events.each do |e| %>
-  <ul>
-    <li> Title: <%= e.title %></li>
-    <li> Description: <%= e.description %></li>
-    <li> Venue: <%= e.venue %></li>
-    <li> Date: <%= e.date %></li>
-  </ul>
+<% if @user_created_events %>
+  <div class="my-events-cont">
+    <h2>Created Events</h2>
+    <ul class="my-events">
+      <% @user_created_events.each do |me| %>
+        <li>
+          <%= link_to  me.name, event_path(me.id) %>
+        </li>
+        <li>
+        <%= @user_created_events.title %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
-
-
-<h2>All the Future Events listed down below:</h2>
-
-<% @upcoming_events.each do |e| %>
-  <ul>
-    <li> Title: <%= e.title %></li>
-    <li> Description: <%= e.description %></li>
-    <li> Venue: <%= e.venue %></li>
-    <li> Date: <%= e.date %></li>
-  </ul>
-<% end %>
-</section>
