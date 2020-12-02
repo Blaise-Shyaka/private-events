@@ -32,6 +32,10 @@
     <% end %>
   </div>
 </section>
-    
-<%= link_to "Create new event", new_event_path %><br><br>
-<%= link_to "Back to All Events", root_path %>
+
+<% if session[:name] %>
+  <%= link_to "Create new event", new_event_path %><br><br>
+  <%= link_to "Back to all your attended Events", root_path %>
+<% else %>
+  <%= link_to "Create new event", root_path %><br><br>
+<% end %>

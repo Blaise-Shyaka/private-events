@@ -10,11 +10,11 @@
     <%= link_to  "Log In", new_session_path%>
     <%= link_to  "Sign Up", new_user_path%> <br>
   <% end %>
-  <%= link_to  "See all your Events", events_path%> <br>
+  <%= link_to  "See all Events", events_path%> <br>
 </nav>
 
 
-
+<% if session[:name] %>
 <% if @user_created_events.any? %>
   <div class="my-events-cont">
     <h2>Created Events</h2>
@@ -58,7 +58,7 @@
     </ul>
   </div>
 <% else %>
-  <p>There is no Past Events on the list</p>
+  <p>There is no Past attended Events on the list</p>
 <% end %>
 
 <% if @upcoming_events.any? %>
@@ -82,5 +82,6 @@
     </ul>
   </div>
 <% else %>
-  <p>There is no Upcoming Events on the list</p>
+  <p>There is no Upcoming attended Events on the list</p>
+<% end %>
 <% end %>
