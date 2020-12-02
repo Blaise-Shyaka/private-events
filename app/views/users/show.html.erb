@@ -1,7 +1,9 @@
 <nav>
   <% if session[:name] %>
-    <p>You are Log In as: <br> <%= session[:name] %></p>
-    <%= link_to  "Log Out", session_path(session[:name]), method: :delete %>
+    <p>You are Log In as: <br> <strong> <%= session[:name] %></strong></p>
+    <%= link_to  "Log Out", session_path(session[:name]), method: :delete %><br>
+    <br>
+    <%= link_to "Create new event", new_event_path %>
   <% else %>
     <p>You need to Log In or Sign Up</p>
     <%= link_to  "Sign Up", new_user_path%> <br>
@@ -21,6 +23,65 @@
         </li>
         <li>
         <%= @user_created_events.title %>
+        </li>
+        <li>
+        <%= @user_created_events.description %>
+        </li>
+        <li>
+        <%= @user_created_events.venue %>
+        </li>
+        <li>
+        <%= @user_created_events.date %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @past_events %>
+  <div class="my-events-cont">
+    <h2>Created Events</h2>
+    <ul class="my-events">
+      <% @past_events.each do |me| %>
+        <li>
+          <%= link_to  me.name, event_path(me.id) %>
+        </li>
+        <li>
+        <%= @past_events.title %>
+        </li>
+        <li>
+        <%= @past_events.description %>
+        </li>
+        <li>
+        <%= @past_events.venue %>
+        </li>
+        <li>
+        <%= @past_events.date %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @upcoming_events %>
+  <div class="my-events-cont">
+    <h2>Created Events</h2>
+    <ul class="my-events">
+      <% @upcoming_events.each do |me| %>
+        <li>
+          <%= link_to  me.name, event_path(me.id) %>
+        </li>
+        <li>
+        <%= @upcoming_events.title %>
+        </li>
+        <li>
+        <%= @upcoming_events.description %>
+        </li>
+        <li>
+        <%= @upcoming_events.venue %>
+        </li>
+        <li>
+        <%= @upcoming_events.date %>
         </li>
       <% end %>
     </ul>
