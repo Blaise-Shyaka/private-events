@@ -19,12 +19,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    if false
-    @user = current_user
+    # if false
+    # @user = current_user
     @user_created_events = current_user.created_events
-    @past_events = current_user.attended_events.previous_events
-    @upcoming_events = current_user.attended_events.upcoming_events
-    end
+    @past_events = current_user.previous_events
+    @upcoming_events = current_user.upcoming_events
+    # end
   end
 
   def destroy
