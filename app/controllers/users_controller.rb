@@ -18,11 +18,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user
-      @user_created_events = current_user.created_events
-      @past_events = current_user.attended_events.select { |t| t.date.to_s < Time.now.to_s }
-      @upcoming_events = current_user.attended_events.select { |t| t.date.to_s > Time.now.to_s }
-    end
+    return unless current_user
+    @user_created_events = current_user.created_events
+    @past_events = current_user.attended_events.select { |t| t.date.to_s < Time.now.to_s }
+    @upcoming_events = current_user.attended_events.select { |t| t.date.to_s > Time.now.to_s }
   end
 
   def destroy
