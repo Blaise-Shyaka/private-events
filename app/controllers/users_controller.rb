@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
     return unless current_user
+
     @user_created_events = current_user.created_events
     @past_events = current_user.attended_events.select { |t| t.date.to_s < Time.now.to_s }
     @upcoming_events = current_user.attended_events.select { |t| t.date.to_s > Time.now.to_s }
