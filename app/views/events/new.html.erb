@@ -1,0 +1,7 @@
+<%= form_with model: @event, method: "POST" do |f| %>
+  <%= f.text_field(:title, placeholder: "Event Title") %>
+  <%= f.text_field(:description, placeholder: "Event Description") %>
+  <%= f.text_field(:venue, placeholder: "Event Venue") %>
+  <%= f.date_field(:date, placeholder: "Event Date") %>
+  <%= f.submit("Create Event") %>
+<% end %>

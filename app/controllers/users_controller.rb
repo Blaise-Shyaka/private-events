@@ -1,14 +1,16 @@
 class UsersController < ApplicationController
-  # before_action :authenticate_user!, only: %i[new create show]
-
   def new
-    @user = User.new
+    if session[:name].nil?
+      @user = User.new
+    else
+      @user = User.find(session[:user_id])
+      redirect_to user_path(@user)
+    end
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      cookies[:current_user_id] = @user.id
       redirect_to root_path, notice: 'Successfully signed up!'
     else
       render :new
@@ -16,7 +18,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @user = User.find(session[:current_user_id])
+    return unless current_user
+
+    @user_created_events = current_user.created_events
+    @past_events = current_user.attended_events.select { |t| t.date.to_s < Time.now.to_s }
+    @upcoming_events = current_user.attended_events.select { |t| t.date.to_s > Time.now.to_s }
+  end
+
+  def destroy
+    session.delete(:id)
+    @current_user = nil
   end
 
   private

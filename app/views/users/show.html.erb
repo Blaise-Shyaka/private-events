@@ -1,1 +1,87 @@
-<%# <p>Dear <%= @user.name %>, your account was successfully created!</p> %>
+<nav>
+  <% if session[:name] %>
+    <%= link_to  "Log Out", session_path(session[:name]), method: :delete %><br>
+    <br>
+    <p>You are Log In as: <br> <strong> <%= session[:name] %></strong></p>
+    
+    <%= link_to "Create new event", new_event_path %><br><br>
+  <% else %>
+    <p>You need to Log In or Sign Up</p>
+    <%= link_to  "Log In", new_session_path%>
+    <%= link_to  "Sign Up", new_user_path%> <br>
+  <% end %>
+  <%= link_to  "See all Events", events_path%> <br>
+</nav>
+
+
+<% if session[:name] %>
+<% if @user_created_events.any? %>
+  <div class="my-events-cont">
+    <h2>Created Events</h2>
+    <ul class="my-events">
+      <% @user_created_events.each do |me| %>
+        <li>
+        <%= me.title %>
+        </li>
+        <li>
+        <%= me.description %>
+        </li>
+        <li>
+        <%= me.venue %>
+        </li>
+        <li>
+        <%= me.date %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @past_events.any? %>
+  <div class="my-events-cont">
+    <h2>Past Events</h2>
+    <ul class="my-events">
+      <% @past_events.each do |me| %>
+        <li>
+        <%= me.title %>
+        </li>
+        <li>
+        <%= me.description %>
+        </li>
+        <li>
+        <%= me.venue %>
+        </li>
+        <li>
+        <%= me.date %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <p>There is no Past attended Events on the list</p>
+<% end %>
+
+<% if @upcoming_events.any? %>
+  <div class="my-events-cont">
+    <h2>Upcoming Events</h2>
+    <ul class="my-events">
+      <% @upcoming_events.each do |me| %>
+        <li>
+        <%= me.title %>
+        </li>
+        <li>
+        <%= me.description %>
+        </li>
+        <li>
+        <%= me.venue %>
+        </li>
+        <li>
+        <%= me.date %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <p>There is no Upcoming attended Events on the list</p>
+<% end %>
+<% end %>

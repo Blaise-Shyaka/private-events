@@ -1,0 +1,41 @@
+<h1> All Events </h1>
+
+<section class="events-wrapper">
+  <div class="upcoming-events">
+    <h2>Upcoming Events</h2>
+    <%if @all_upcoming_events.any? %>
+      <% @all_upcoming_events.each do |e| %>
+        <ul>
+          <li> Title: <%= e.title %></li>
+          <li> Description: <%= e.description %></li>
+          <li> Venue: <%= e.venue %></li>
+          <li> Date: <%= e.date %></li>
+        </ul>
+      <% end %>
+    <% else %>
+      <p>There are no upcoming events</p>
+    <% end %>
+  </div>
+  <div class="past-events">
+    <h2>Past Events</h2>
+    <%if @all_past_events.any? %>
+      <% @all_past_events.each do |e| %>
+        <ul>
+          <li> Title: <%= e.title %></li>
+          <li> Description: <%= e.description %></li>
+          <li> Venue: <%= e.venue %></li>
+          <li> Date: <%= e.date %></li>
+        </ul>
+      <% end %>
+    <% else %>
+      <p>There are no past events</p>
+    <% end %>
+  </div>
+</section>
+
+<% if session[:name] %>
+  <%= link_to "Create new event", new_event_path %><br><br>
+  <%= link_to "Back to all your attended Events", root_path %>
+<% else %>
+  <%= link_to "Create new event", root_path %><br><br>
+<% end %>
